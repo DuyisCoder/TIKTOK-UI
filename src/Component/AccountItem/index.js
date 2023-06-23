@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
-import styles from './AccoutItem.module.scss';
+import styles from './AccountItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
-function AccoutItem() {
+function AccountItem() {
     return (
         <div className={cx('wrapper')}>
             <img
@@ -22,4 +22,4 @@ function AccoutItem() {
     );
 }
 
-export default AccoutItem;
+export default AccountItem;
