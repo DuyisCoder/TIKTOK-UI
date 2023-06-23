@@ -27,7 +27,9 @@ import images from '~/assets/images';
 import AccountItem from '~/Component/AccountItem';
 import Menu from '~/Component/Popper/Menu';
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons';
-
+import { UploadIcon } from '~/Component/Icons';
+import { UploadIconMessage } from '~/Component/Icons/message';
+import Image from '~/Component/Image';
 const cx = classNames.bind(styles); // để có thể sài dấu ' - ' .post-iteam
 
 const Menu_Items = [
@@ -58,7 +60,7 @@ const Menu_Items = [
     },
     {
         icon: <FontAwesomeIcon icon={faKeyboard} />,
-        title: 'Keyboard short',
+        title: 'Keyboard shortcuts',
     },
 ];
 
@@ -99,7 +101,7 @@ function Header() {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'LogOut',
             to: '/',
-            separate: true,// đường line top
+            separate: true, // đường line top
         },
     ];
     return (
@@ -136,7 +138,8 @@ function Header() {
                         <Fragment>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
+                                    <UploadIconMessage />
                                 </button>
                             </Tippy>
                         </Fragment>
@@ -148,10 +151,11 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : Menu_Items} onChange={handleMenuOnChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-1/348587330_1291033801500415_5927309239137273164_n.jpg?stp=cp6_dst-jpg_p80x80&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=e1vYe9FwWo8AX9HigCu&_nc_ht=scontent.fsgn2-3.fna&oh=00_AfBykpq_AzlMUXkS9G39ZBW2v5CfQVqV-wOcZShf256AjQ&oe=6495E9CE"
-                            ></img>
+                                // fallback=" https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-1/348587330_1291033801500415_5927309239137273164_n.jpg?stp=cp6_dst-jpg_p80x80&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=e1vYe9FwWo8AX9HigCu&_nc_ht=scontent.fsgn2-3.fna&oh=00_AfBykpq_AzlMUXkS9G39ZBW2v5CfQVqV-wOcZShf256AjQ&oe=6495E9CE"
+                            ></Image>
                         ) : (
                             <button className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />

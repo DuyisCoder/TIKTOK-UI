@@ -1,5 +1,4 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:ital,wght@0,400;1,300&display=swap');
 
 :root {
     --primary: #fe2c55;
@@ -15,7 +14,7 @@ html {
     font-size: 62.5%;
 }
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'ProximaNova', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed; // tối ưu font size tải nhanh
@@ -35,6 +34,27 @@ input,
 a[href] {
     color: var(--text-color);
     text-decoration: none;
+}
+//Nhúng font
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/fonts/Proxima-Nova-Regular (1).woff2');
+    font-weight: 400;
+}
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/fonts/ProximaNova-Semibold (1).woff2');
+    font-weight: 600;
+}
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/fonts/sofiapro-semibold (1).otf');
+    font-weight: 600;
+}
+@font-face {
+    font-family: SofiaPro;
+    src: url('/assets/fonts/sofiapro-bold (1).woff');
+    font-weight: 700;
 }
 // Custom tippy tooltip
 body {
