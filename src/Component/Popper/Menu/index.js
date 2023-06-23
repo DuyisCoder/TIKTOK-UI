@@ -36,6 +36,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             // visible
             delay={[0, 700]} // 0 là time hiện, khi ẩn thì bỏ chuột ra 5s thì ẩn
             interactive
+            offset={[30, 8]} // chiều ngang-cao
             placement="bottom-end" // để thẻ hiện ở dưới bottom khi hover do Tippy hổ trợ
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
@@ -52,6 +53,9 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                     </PopperWrapper>
                 </div>
             )}
+            onHidden={() => {
+                setHistory((prev) => prev.slice(0, 1));
+            }} // trả về menu đầu tiên của Language
         >
             {children}
         </Tippy>
