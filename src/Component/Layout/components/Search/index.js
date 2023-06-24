@@ -7,19 +7,40 @@ import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-s
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { useState, useEffect, useRef } from 'react';
+import { useDebounce } from '~/hooks';
+
 const cx = classNames.bind(styles);
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
-
+    const [loading, setLoading] = useState(false);
     const inputRef = useRef();
 
+    const debounce = useDebounce(searchValue, 500); // viết ra hàm useDebounce và sử dụng
+    // Nhằm mục đích để nó res kết quả cuối cùng của API để tối ưu không cần res nhiều lần
+    //  trong mỗi lần nhập
+
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 1, 1, 3]);
-        }, 0);
-    }, []);
+        // fix lỗi khi lần đầu searchValue là 1 chuỗi rỗng
+        if (!debounce.trim()) {
+            // khi xóa sẽ trở thành mảng rỗng
+            setSearchResult([]);
+            return;
+        }
+
+        setLoading(true);
+
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`) // encode để mã hõa kí tự lạ
+            .then((res) => res.json())
+            .then((res) => {
+                setSearchResult(res.data);
+                setLoading(false);
+            })
+            .catch(() => {
+                setLoading(false);
+            });
+    }, [debounce]); // mỗi khi ng dùng nhập searchValue thay đổi-> gọi callback
 
     const handleClear = () => {
         setSearchValue('');
@@ -37,8 +58,9 @@ function Search() {
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Accounts</h4>
-                        <AccountItem />
-                        <AccountItem />
+                        {searchResult.map((result) => (
+                            <AccountItem key={result.id} data={result} />
+                        ))}
                     </PopperWrapper>
                 </div>
             )}
@@ -51,14 +73,15 @@ function Search() {
                     placeholder="Tìm kiếm"
                     spellCheck={false}
                     onChange={(e) => setSearchValue(e.target.value)}
-                    onFocus={()=> setShowResult(true)}
+                    onFocus={() => setShowResult(true)}
                 />
-                {searchValue && (
+                {searchValue && !loading && (
                     <button className={cx('clear')} onClick={handleClear}>
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
                 )}
-                {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+
+                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
                 <button className={cx('search-btn')}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
