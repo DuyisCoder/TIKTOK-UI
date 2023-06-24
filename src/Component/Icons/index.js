@@ -1,5 +1,5 @@
 // Component cho từng file SVG
-export const UploadIcon = ({ width = '3rem', height = '3rem', className }) => (
+export const UploadIcon = ({ width = '2.5rem', height = '2.5rem', className }) => (
     <svg
         className={className}
         width={width}
@@ -15,4 +15,3 @@ export const UploadIcon = ({ width = '3rem', height = '3rem', className }) => (
         ></path>
     </svg>
 );
-

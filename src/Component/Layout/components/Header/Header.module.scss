@@ -17,77 +17,7 @@
     justify-content: space-between;
     padding: 0 var(--default-layout-horizontal-spacer);
 }
-.search,
-.search-result {
-    width: 361px;
-}
-.search {
-    position: relative;
-    display: flex;
-    background-color: rgba(22, 24, 35, 0.06);
-    height: var(--search-height);
-    width: 361px;
-    border-radius: var(--search-border-radius);
-    padding-left: 16px;
-    border: 1.5px solid transparent;
-    input {
-        flex: 1;
-        color: var(--black);
-        font-size: 1.6rem; //16px
-        background-color: transparent;
-        height: 100%;
-        caret-color: var(--primary); // màu của nút khi nhập
-    }
-    // Nếu nút input không có placeholder . ~.search-btn là class cần css
-    // Khi nhập vào chữ gì đó thì search-btn(icon-search) sẽ ăn css và hiển thị lên
-    input:not(:placeholder-shown) ~ .search-btn {
-        color: rgba(22, 24, 35, 0.75);
-    }
-    &::after {
-        content: ' ';
-        position: absolute;
-        right: var(--search-button-width);
-        width: 1px;
-        top: var(--search-top-spacer);
-        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
-        background-color: rgba(22, 24, 35, 0.12);
-    }
-    &:focus-within {
-        border: 1.5px solid rgba(22, 24, 35, 0.2); // focus-within để focus nguyên thể div cha chứa nó
-    }
-}
-.search-title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: rgba(22, 24, 35, 0.5);
-    padding: 5px 12px;
-}
 
-.clear,
-.loading {
-    position: absolute;
-    right: calc(var(--search-button-width) + 16px);
-    top: 50%;
-    transform: translateY(-50%);
-}
-.search-btn {
-    color: #ccc;
-    width: var(--search-button-width);
-    height: 100%;
-    border-top-right-radius: var(--search-border-radius);
-    border-bottom-right-radius: var(--search-border-radius);
-    background-color: transparent;
-    font-size: 1.8rem;
-
-    &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
-        cursor: pointer;
-        color: black;
-    }
-    &:active {
-        background-color: rgba(22, 24, 35, 0.06);
-    }
-}
 .action {
     display: flex;
     align-items: center;
@@ -96,7 +26,7 @@
     background-color: transparent;
     font-size: 2.2rem;
     color: #161823;
-    padding: 4px 12px;
+    padding: 4px 8px;
     cursor: pointer;
 }
 .more-btn {
