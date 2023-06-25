@@ -1,13 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react';
-import AccountItem from '~/Component/AccountItem';
-import { Wrapper as PopperWrapper } from '~/Component/Popper';
-import HeadLessTippy from '@tippyjs/react/headless';
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import classNames from 'classnames/bind';
-import styles from './Search.module.scss';
+import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
+import classNames from 'classnames/bind';
+import HeadLessTippy from '@tippyjs/react/headless';
+import styles from './Search.module.scss';
+
+import * as searchServices from '~/apiServices/searchServices';
+import { Wrapper as PopperWrapper } from '~/Component/Popper';
+import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useDebounce } from '~/hooks';
+import AccountItem from '~/Component/AccountItem';
 
 const cx = classNames.bind(styles);
 function Search() {
@@ -29,17 +31,16 @@ function Search() {
             return;
         }
 
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`) // encode để mã hõa kí tự lạ
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+            const result = await searchServices.search(debounce);
+            setSearchResult(result);
+
+            setLoading(false);
+        };
+        fetchApi();
+        //API
     }, [debounce]); // mỗi khi ng dùng nhập searchValue thay đổi-> gọi callback
 
     const handleClear = () => {
