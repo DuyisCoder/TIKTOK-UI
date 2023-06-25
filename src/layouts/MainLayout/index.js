@@ -1,9 +1,9 @@
-import Header from '~/Component/Layout/components/Header';
+import Header from '~/layouts/components/Header';
 import SideBar from './Sidebar';
-import styles from './DefaultLayout.module.scss';
+import styles from './MainLayout.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
-function DefaultLayout({ children }) {
+function MainLayout({ children }) {
     return (
         <div>
             <Header />
@@ -17,4 +17,4 @@ function DefaultLayout({ children }) {
     );
 }
 
-export default DefaultLayout;
+export default MainLayout;

@@ -1,6 +1,7 @@
-import { useState, useEffect, Fragment } from 'react';
+import { Fragment } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { Link } from 'react-router-dom';
 import {
     faCircleQuestion,
@@ -12,10 +13,9 @@ import {
     faSignOut,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import HeadLessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import routesConfig from '~/config/routes';
+import config from '~/config';
 
 import Button from '~/Component/Button';
 import styles from './Header.module.scss';
@@ -66,8 +66,10 @@ function Header() {
     const handleMenuOnChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
-            //breakl
+                console.log('Thành công');
+                break;
             default:
+                console.log('Lỗi');
         }
     };
     const userMenu = [
@@ -97,7 +99,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routesConfig.home} className={cx('logo-link')}>
+                <Link to={config.routes.home} className={cx('logo-link')}>
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
                 <Search />

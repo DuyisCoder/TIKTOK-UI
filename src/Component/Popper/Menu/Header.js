@@ -1,4 +1,3 @@
-import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

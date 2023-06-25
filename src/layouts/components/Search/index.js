@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 import HeadLessTippy from '@tippyjs/react/headless';
 import styles from './Search.module.scss';
 
-import * as searchServices from '~/apiServices/searchServices';
+import * as searchServices from '~/service/searchService';
 import { Wrapper as PopperWrapper } from '~/Component/Popper';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useDebounce } from '~/hooks';
@@ -65,7 +64,7 @@ function Search() {
     };
     return (
         // Sử dụng <div></div> để wrapper lại thẻ tippy tránh warning
-        <div> 
+        <div>
             <HeadLessTippy
                 interactive
                 visible={showResult && searchResult.length > 0} // nếu có kết quả tìm kiếm thì hiện ra
