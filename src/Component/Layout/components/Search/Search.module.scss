@@ -18,6 +18,7 @@
         background-color: transparent;
         height: 100%;
         caret-color: var(--primary); // màu của nút khi nhập
+        font-family: var(--font-family);
     }
     // Nếu nút input không có placeholder . ~.search-btn là class cần css
     // Khi nhập vào chữ gì đó thì search-btn(icon-search) sẽ ăn css và hiển thị lên

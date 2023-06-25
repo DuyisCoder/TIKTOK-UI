@@ -9,7 +9,7 @@ import { useState } from 'react';
 const cx = classNames.bind(styles);
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({ hideOnClick = false, children, items = [], onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]); // truyền vào object vì nó đại diện dữ liệu
     const current = history[history.length - 1]; // lấy ra pt cuối mảng
     // Render ra List Item
@@ -33,6 +33,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
     };
     return (
         <Tippy
+            hideOnClick={hideOnClick} // để khi click vào avt thì ko bị ẩn
             // visible
             delay={[0, 700]} // 0 là time hiện, khi ẩn thì bỏ chuột ra 5s thì ẩn
             interactive
