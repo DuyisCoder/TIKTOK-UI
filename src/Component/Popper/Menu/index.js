@@ -50,7 +50,8 @@ function Menu({ hideOnClick = false, children, items = [], onChange = defaultFn 
                                 }}
                             />
                         )}
-                        {renderItem()}
+
+                        <div className={cx('menu-scroll')}> {renderItem()}</div>
                     </PopperWrapper>
                 </div>
             )}
